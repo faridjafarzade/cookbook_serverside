@@ -1,0 +1,114 @@
+#page_container {
+    width:100%;
+}
+
+#page_buttons , .product ,.product_edit,.product_edit_part{
+    width:100%;
+
+
+    display: -webkit-flex; 
+    display: flex;
+
+}
+.product {
+
+}
+.product_edit{
+    background-color: #c9cdde;
+    margin-bottom: 15px;
+    -webkit-flex-direction: column; 
+    flex-direction: column;
+    display: none;
+}
+.product .row , .product_edit_part .row {
+    -webkit-flex-grow: 3;
+    flex-grow: 3;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+
+}
+.product_edit_part .row {
+    -webkit-flex-grow: 2;
+    flex-grow: 2;
+
+}
+.product .edit_button , .product .remove_button , .product .add_card{
+    -webkit-flex-grow: 1;
+    flex-grow: 1;}
+
+
+.product .remove_button {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+}
+
+.product .add_card{
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+}
+
+.product_edit_part .update_title_button , .product_edit_part .update_price_button{
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+}
+.product_edit_part input{
+    width: 100%;
+    height: 100%;
+    border: 0px solid white;
+    background-color: transparent;
+    color: #1a2c83;
+    margin-left: 25px;
+}
+
+.product_edit_part .update_title_button , .product_edit_part .update_price_button{
+
+    background: #ECECEC;
+    border-radius: 16px;
+    padding: 5px 5px;
+    display: block;
+    font-family: arial;
+    font-weight: bold;
+    color:#7f7f7f;
+    text-decoration: none;
+    margin: 14px 10px;
+    text-shadow:0px 1px 0px #fff;
+    border:1px solid #a7a7a7;
+    font-size: 16px;
+    line-height: 20px;
+
+
+
+}
+.product_edit_part .update_title_button , .product_edit_part .update_price_button i{
+    float: right;
+    margin-top: 2px;
+}
+.product_edit_part .update_title_button:hover , .product_edit_part .update_price_button:hover{
+    box-shadow: 0px 2px 1px white inset, 0px -2px 20px white, 0px 2px 5px rgba(0, 0, 0, 0.1), 0px 8px 10px rgba(0, 0, 0, 0.1);
+}
+.product_edit_part .update_title_button:active , .product_edit_part .update_price_button:active{
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5) inset, 0px -2px 20px white, 0px 1px 5px rgba(0, 0, 0, 0.1), 0px 2px 10px rgba(0, 0, 0, 0.1);
+    background:-webkit-linear-gradient(top, #d1d1d1 0%,#ECECEC 100%);
+}
+
+
+
+#page_buttons {
+    text-align: center;
+    border: 1px solid #a7a7a7;
+    margin-top: 30px;
+}
+
+#page_buttons div{
+    -webkit-flex-grow: 3;
+    flex-grow: 3;
+    text-align: center;
+    font-size: 18px;
+    line-height: 25px;
+    cursor:pointer;
+}
+
+.current_number_button{
+    color:blue;
+}
