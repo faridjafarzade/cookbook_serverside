@@ -188,11 +188,7 @@ class RecipeMapper extends Mapper{
 
         $result = $sql_p->fetchColumn();
 
-        if ($result > 0) {
-            return $result;
-        } else {
-            return FALSE;
-        }
+        return $result;
     }
      
     public function getNegativeRateCount(DBObject $recipe) {
@@ -209,11 +205,7 @@ class RecipeMapper extends Mapper{
 
         $result = $sql_p->fetchColumn();
 
-        if ($result > 0) {
-            return $result;
-        } else {
-            return FALSE;
-        }
+        return $result;
     }
 
  }

@@ -1,5 +1,22 @@
 <?php
 
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+        header('Access-Control-Allow-Credentials: true');
+        header('Access-Control-Max-Age: 86400');    // cache for 1 day
+    }
+    // Access-Control headers are received during OPTIONS requests
+    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+            header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");         
+
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+            header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+ }
+
+ob_start();
+
 if (isset($_GET['action'])) {
     include './autoload.php';
 
@@ -140,7 +157,9 @@ if (isset($_GET['action'])) {
 
         $recipeId = Coder::code($_GET['recipe_id']);
         $rateId = Coder::code($_GET['rate_id']);
-        $positive = isset($_GET['positive']);
+        if(isset($_GET['positive'])&&Coder::code($_GET['positive']))
+        $positive = 1;
+        else $positive = 0;
         $date = date("Y-m-d h:i:sa");
         $rate = new Rate($rateId,$_SERVER['REMOTE_ADDR'],$recipeId,$positive,$date);
         
@@ -166,8 +185,8 @@ if (isset($_GET['action'])) {
 
         $rm = new RateMapper();
 
-        if ($rm->removeRate($rate) ){
-            $error = False;
+        if ($rm->remove($rate) ){
+                $error = False;
                 $http_status_codes = 201;
            
         } else {

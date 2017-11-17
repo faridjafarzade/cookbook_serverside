@@ -14,7 +14,7 @@ class RateMapper extends Mapper {
 
     public function abstractRemove(DBObject $rate) {
 
-        $sql_d = $this->dbh->getConnection()->prepare('Delete rate where recipe_id = ? and user_ip = ?');
+        $sql_d = $this->dbh->getConnection()->prepare('Delete from rate where recipe_id = ? and user_ip = ?');
 
         $recipeId = $rate->getRecipeId();
         $userIp = $rate->getUserIp();
@@ -24,7 +24,7 @@ class RateMapper extends Mapper {
         
 
         if ($sql_d->execute()) {
-            return $this->removeProducts($rate);
+            return TRUE;
         } else {
             return FALSE;
         }
@@ -138,7 +138,7 @@ class RateMapper extends Mapper {
 
         $id = $recipe->getId();
         
-        $query = 'SELECT positive  FROM rate where recipe_id  = ? and user_ip = ?';
+        $query = 'SELECT positive  , COUNT(ID) as count  FROM rate where recipe_id  = ? and user_ip = ?';
 
         $sql_p = $this->dbh->getConnection()->prepare($query);
 
@@ -147,9 +147,15 @@ class RateMapper extends Mapper {
 
         $sql_p->execute();
 
-        $result = $sql_p->fetchColumn();
-
-        return $result;
+        $result = $sql_p->fetchAll();
+        
+        if($result[0]['count']>0)
+            if($result[0]['positive']==1)
+                return 2;
+            else 
+                return 1;
+        else
+            return 0;
     }
 
 }
